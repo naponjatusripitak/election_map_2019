@@ -1,0 +1,55 @@
+var attributes = {};
+var fieldInfos = [];
+
+var candidate = 'ผู้สมัคร'
+var party = 'พรรค'
+var result = 'ผลคะแนน'
+var mov = 'margin of victory'
+var turnout = "ผู้ใช้สิทธิเลือกตั้ง"
+var bad_ballot = 'บัตรเสีย'
+var out = 'ผู้ใช้สิทธิลงคะแนนล่วงหน้านอกเขต'
+var register = 'ผู้มีสิทธิเลือกตั้ง'
+var num_ballot = 'จำนวนหน่วยเลือกตั้ง'
+
+attributes[candidate] = $feature['ชื่อผู้สมัคร']
+attributes[party] = $feature['พรรค']
+attributes[result] = Concatenate([Text($feature['ผลคะแนน'], '#,###'), ' (', Round(($feature['ผลคะแนน']/$feature["ผู้ใช้สิทธิเลือกตั้ง"])*100, 2), '%)'], '');
+attributes[mov] = Concatenate([Round($feature["margin_of_victory____"], 2), '%'])
+attributes[turnout] = Concatenate([Text($feature["ผู้ใช้สิทธิเลือกตั้ง"], '#,###'), ' (', Round($feature["ผู้ใช้สิทธิเลือกตั้ง__"], 2),'%)'], '');
+attributes[bad_ballot] = Concatenate([Text($feature["บัตรเสีย"], '#,###'), ' (', Round($feature["บัตรเสีย____"], 2),'%)'], '');
+attributes[out] = Concatenate([Text($feature["ผู้ใช้สิทธิลงคะแนนล่"], '#,###'), ' (', Round($feature["ผู้ใช้สิทธิลงคะแนนล่_1"], 2),'%)'], '');
+attributes[register] = Text($feature["ผู้มีสิทธิเลือกตั้ง"], '#,###')
+attributes[num_ballot] = Text($feature["จำนวนหน่วยเลือกตั้ง"], '#,###')
+
+
+return {
+  type: "fields",
+  fieldInfos:  [{
+          fieldName: candidate  // fieldName should match the key in the attributes dictionary
+        },
+        {
+          fieldName: party  // fieldName should match the key in the attributes dictionary
+        },
+        {
+          fieldName: result  // fieldName should match the key in the attributes dictionary
+        },
+        {
+          fieldName: mov  // fieldName should match the key in the attributes dictionary
+        },
+        {
+          fieldName: register  // fieldName should match the key in the attributes dictionary
+        },
+        {
+          fieldName: turnout  // fieldName should match the key in the attributes dictionary
+        },
+        {
+          fieldName: bad_ballot  // fieldName should match the key in the attributes dictionary
+        },
+        {
+          fieldName: out  // fieldName should match the key in the attributes dictionary
+        },
+        {
+          fieldName: num_ballot  // fieldName should match the key in the attributes dictionary
+        }],
+  attributes: attributes
+};
