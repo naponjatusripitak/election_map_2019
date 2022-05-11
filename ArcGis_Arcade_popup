@@ -1,0 +1,33 @@
+var attributes = {};
+var fieldInfos = [];
+
+var candidate1 = Concatenate([$feature['ชื่อผู้สมัคร_1'], ' (พรรค', $feature['พรรค_1'], ')'], '')
+var candidate2 = Concatenate([$feature['ชื่อผู้สมัคร_2'], ' (พรรค', $feature['พรรค_2'], ')'], '')
+var candidate3 = Concatenate([$feature['ชื่อผู้สมัคร_3'], ' (พรรค', $feature['พรรค_3'], ')'], '')
+var candidate4 = Concatenate([$feature['ชื่อผู้สมัคร_4'], ' (พรรค', $feature['พรรค_4'], ')'], '')
+var candidate5 = Concatenate([$feature['ชื่อผู้สมัคร_5'], ' (พรรค', $feature['พรรค_5'], ')'], '')
+
+
+
+attributes[candidate1] = Text($feature['ผลคะแนน_1'], '#,###')
+attributes[candidate2] = Text($feature['ผลคะแนน_2'], '#,###')
+attributes[candidate3] = Text($feature['ผลคะแนน_3'], '#,###')
+attributes[candidate4] = Text($feature['ผลคะแนน_4'], '#,###')
+attributes[candidate5] = Text($feature['ผลคะแนน_5'], '#,###')
+
+
+
+return {
+  type: "media",
+  attributes: attributes,
+  mediaInfos: [{
+        type : 'columnchart', //linechart | barchart | piechart | columnchart
+        title : '',
+        // caption : '',
+        altText : '', //altText will be read by screen readers
+        value : {
+          fields: [candidate1, candidate2, candidate3, candidate4, candidate5],  // choose what attributes to use in the chart
+          //normalizeField : '',  // the name of the attribute to normalize by or value 
+        }	  
+      }]
+  }
